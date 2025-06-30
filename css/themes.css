@@ -1,0 +1,231 @@
+/* Thèmes modernes et prononcés pour l'application */
+
+/* === VARIABLES GLOBALES === */
+:root {
+    --transition-speed: 0.4s;
+    --border-radius: 12px;
+    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.15);
+    --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* === THÈME CLAIR - MODERNE === */
+[data-theme="light"] {
+    --bg-primary: #f5f6fa;
+    --bg-secondary: #f0f1f3;
+    --bg-card: #ffffff;
+    --text-primary: #23272f;
+    --text-secondary: #6c6f7a;
+    --text-muted: #b0b3bb;
+    --border-color: #e5e7eb;
+    --accent-color: #3b82f6;
+    --success-color: #22c55e;
+    --warning-color: #f59e42;
+    --danger-color: #ef4444;
+    --shadow-color: rgba(60, 60, 60, 0.07);
+}
+body[data-theme="light"] {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-weight: 400;
+}
+
+/* === THÈME SOMBRE - ÉLÉGANT === */
+[data-theme="dark"] {
+    --bg-primary: #181a20;
+    --bg-secondary: #23242a;
+    --bg-card: #23242a;
+    --text-primary: #f3f4f6;
+    --text-secondary: #b0b3bb;
+    --text-muted: #6c6f7a;
+    --border-color: #23242a;
+    --accent-color: #3b82f6;
+    --success-color: #22c55e;
+    --warning-color: #f59e42;
+    --danger-color: #ef4444;
+    --shadow-color: rgba(0,0,0,0.18);
+}
+body[data-theme="dark"] {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* === THÈME BLEU - OCÉANIQUE === */
+[data-theme="blue"] {
+    --bg-primary: #e6f1fa;
+    --bg-secondary: #eaf6fb;
+    --bg-card: #fafdff;
+    --text-primary: #1e293b;
+    --text-secondary: #2563eb;
+    --text-muted: #60a5fa;
+    --border-color: #c7e0f7;
+    --accent-color: #2563eb;
+    --success-color: #22c55e;
+    --warning-color: #f59e42;
+    --danger-color: #ef4444;
+    --shadow-color: rgba(37, 99, 235, 0.08);
+}
+body[data-theme="blue"] {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* === STYLES COMMUNS POUR TOUS LES THÈMES === */
+
+/* Cartes avec effets modernes */
+/* Cartes sobres et flat */
+.card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+    transition: box-shadow 0.25s, border-color 0.25s, background 0.25s !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet hover sobre */
+.card:hover {
+    box-shadow: 0 6px 24px var(--shadow-color) !important;
+    border-color: var(--accent-color) !important;
+    background: var(--bg-secondary) !important;
+}
+
+/* En-têtes de cartes */
+/* En-têtes sobres */
+.card-header {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+    color: var(--text-primary) !important;
+    padding: 1.25rem 1rem 1rem 1rem !important;
+    font-weight: 600;
+}
+
+/* Suppression de la barre décorative flashy */
+
+/* Cartes de statistiques avec gradients */
+/* Cartes de stats sobres */
+.card.bg-info, .card.bg-warning, .card.bg-success, .card.bg-primary {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1.5px solid var(--border-color) !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+    font-weight: 600;
+}
+.card.bg-info:hover, .card.bg-warning:hover, .card.bg-success:hover, .card.bg-primary:hover {
+    box-shadow: 0 8px 32px var(--shadow-color) !important;
+    border-color: var(--accent-color) !important;
+    background: var(--bg-secondary) !important;
+}
+
+/* Boutons modernisés */
+/* Boutons sobres */
+.btn-primary {
+    background: var(--accent-color) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.7rem 1.3rem !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s !important;
+}
+.btn-primary:hover {
+    background: #2563eb !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px var(--shadow-color) !important;
+}
+
+
+/* Champs de formulaire */
+/* Champs sobres */
+.form-control {
+    background: var(--bg-card) !important;
+    border: 1.5px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    padding: 0.7rem 1rem !important;
+}
+.form-control:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 2px var(--shadow-color) !important;
+}
+
+/* Modals */
+/* Modals sobres */
+.modal-content {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1.5px solid var(--border-color) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: 0 4px 24px var(--shadow-color) !important;
+}
+
+/* En-tête modal sobre */
+.modal-header {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+
+/* Table responsive */
+/* Table sobre */
+.table {
+    color: var(--text-primary) !important;
+    background: var(--bg-card) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    font-size: 1rem;
+}
+.table-dark {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > td {
+    background-color: rgba(255,255,255,0.01) !important;
+}
+
+/* Badges modernisés */
+/* Badges sobres */
+.badge {
+    border-radius: 16px !important;
+    padding: 0.35rem 0.8rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.2px !important;
+}
+
+/* Effets de texte */
+/* Textes sobres */
+.text-primary {
+    color: var(--text-primary) !important;
+}
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Animation globale fluide */
+* {
+    transition: background-color 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s !important;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
