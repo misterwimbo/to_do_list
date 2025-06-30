@@ -4,10 +4,10 @@
  * Modifiez ces valeurs selon votre environnement
  */
 class DatabaseConfig {
-    const HOST = 'localhost';
+    const HOST = '127.0.0.1';
     const DB_NAME = 'to_do_list';
     const USERNAME = 'root';
-    const PASSWORD = '';
+    const PASSWORD = 'MOT_DE_PASSE';
     const CHARSET = 'utf8mb4';
 }
 

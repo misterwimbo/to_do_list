@@ -87,6 +87,7 @@ try {
     // Protection CSRF basique
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !validateCSRF()) {
         echo json_encode(ApiResponse::error('Requête non autorisée', 403));
+        die(0);
         exit();
     }
     

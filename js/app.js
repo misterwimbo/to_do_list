@@ -63,12 +63,14 @@ $(document).ready(function() {
             addTask(title);
         }
     });
-    
-    // Basculer le statut d'une tâche (terminée/en cours)
+      // Basculer le statut d'une tâche (terminée/en cours)
     $(document).on('change', '.task-checkbox', function() {
         const taskId = $(this).data('id');
         const isChecked = $(this).is(':checked');
         toggleTask(taskId, isChecked);
+        
+        // Mettre à jour l'état de la checkbox "selectAll"
+        updateSelectAllState();
     });
     
     // Supprimer une tâche
@@ -155,6 +157,44 @@ $(document).ready(function() {
         changeTheme(theme);
     });
     
+    // Gestion de la checkbox "Sélectionner tout"
+    $(document).on('change', '#selectAll', function() {
+        const isChecked = $(this).is(':checked');
+        
+        // Sélectionner/déselectionner toutes les checkboxes visibles
+        if (tasksTable) {
+            // Obtenir toutes les lignes visibles (après filtrage)
+            const visibleRows = tasksTable.rows({ 'search': 'applied' }).nodes();
+            
+            $(visibleRows).find('.task-checkbox').each(function() {
+                const $checkbox = $(this);
+                const taskId = $checkbox.data('id');
+                const currentState = $checkbox.is(':checked');
+                
+                // Ne changer que si l'état est différent pour éviter les appels inutiles
+                if (currentState !== isChecked) {
+                    $checkbox.prop('checked', isChecked);
+                    
+                    // Mettre à jour dans la base de données
+                    toggleTask(taskId, isChecked);
+                }
+            });
+        } else {
+            // Fallback si DataTable n'est pas disponible
+            $('.task-checkbox').each(function() {
+                const $checkbox = $(this);
+                const taskId = $checkbox.data('id');
+                const currentState = $checkbox.is(':checked');
+                
+                if (currentState !== isChecked) {
+                    $checkbox.prop('checked', isChecked);
+                    toggleTask(taskId, isChecked);
+                }
+            });
+        }
+          showSuccess(isChecked ? 'Toutes les tâches ont été sélectionnées' : 'Toutes les tâches ont été désélectionnées');
+    });
+    
     // === FONCTIONS AJAX ===
     
     // Charger toutes les tâches
@@ -173,7 +213,7 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                showError('Erreur de connexion au serveur');
+                showError('Erreur de connexion au serveur 01');
             }
         });
     }
@@ -303,12 +343,14 @@ $(document).ready(function() {
             const row = createTaskRow(task);
             tasksTable.row.add(row);
         });
-        
-        // Redessiner la table
+          // Redessiner la table
         tasksTable.draw();
         
         // Mettre à jour les statistiques
         updateStatistics(tasks);
+        
+        // Mettre à jour l'état de la checkbox "selectAll"
+        updateSelectAllState();
     }
     
     // Créer une ligne de tâche pour DataTable
@@ -348,8 +390,7 @@ $(document).ready(function() {
             actions
         ];
     }
-    
-    // Appliquer le filtre pour DataTable
+      // Appliquer le filtre pour DataTable
     function applyFilter() {
         if (!tasksTable) return;
         
@@ -360,6 +401,9 @@ $(document).ready(function() {
         } else if (currentFilter === 'done') {
             tasksTable.column(1).search('Terminée').draw();
         }
+        
+        // Mettre à jour l'état de la checkbox "selectAll" après filtrage
+        updateSelectAllState();
     }
     
     // Mettre à jour les statistiques
@@ -378,6 +422,35 @@ $(document).ready(function() {
     // Mettre à jour les compteurs (pour compatibilité)
     function updateCounters(tasks) {
         updateStatistics(tasks);
+    }
+    
+    // Mettre à jour l'état de la checkbox "Sélectionner tout"
+    function updateSelectAllState() {
+        if (!tasksTable) return;
+        
+        // Obtenir toutes les checkboxes visibles (après filtrage)
+        const visibleCheckboxes = tasksTable.rows({ 'search': 'applied' }).nodes().toArray()
+            .map(row => $(row).find('.task-checkbox'))
+            .filter(checkbox => checkbox.length > 0);
+        
+        if (visibleCheckboxes.length === 0) {
+            $('#selectAll').prop('checked', false).prop('indeterminate', false);
+            return;
+        }
+        
+        const checkedCount = visibleCheckboxes.filter(checkbox => checkbox.is(':checked')).length;
+        const totalCount = visibleCheckboxes.length;
+        
+        if (checkedCount === 0) {
+            // Aucune tâche sélectionnée
+            $('#selectAll').prop('checked', false).prop('indeterminate', false);
+        } else if (checkedCount === totalCount) {
+            // Toutes les tâches sélectionnées
+            $('#selectAll').prop('checked', true).prop('indeterminate', false);
+        } else {
+            // Quelques tâches sélectionnées (état intermédiaire)
+            $('#selectAll').prop('checked', false).prop('indeterminate', true);
+        }
     }
     
     // === GESTION DES THÈMES ===
