@@ -109,7 +109,7 @@ chmod 644 /chemin/vers/to_do_list/*.php
 ### Interface principale
 
 1. **Ajouter une tâche** : Utiliser le formulaire en haut de la page
-2. **Modifier une tâche** : Double-cliquer sur le titre ou utiliser le bouton d'édition
+2. **Modifier une tâche** : utiliser le bouton d'édition
 3. **Marquer comme terminée** : Cocher la case correspondante
 4. **Supprimer une tâche** : Utiliser le bouton de suppression
 5. **Filtrer/Rechercher** : Utiliser les outils DataTables intégrés
