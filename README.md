@@ -1,185 +1,196 @@
 # 📋 Gestionnaire de Tâches Pro
 
-*Parce que même les tâches les plus simples méritent une application qui en jette* ✨
+Une application moderne et intuitive de gestion de tâches développée en PHP, JavaScript et MySQL avec une interface utilisateur professionnelle.
 
-## 🚀 Description
+## ✨ Fonctionnalités
 
-Une application web moderne de gestion de tâches développée avec soin et une pointe de perfectionnisme. Cette petite merveille vous permet de créer, modifier, supprimer et organiser vos tâches avec style, tout en gardant un œil sur vos statistiques de productivité.
+- **Gestion complète des tâches** : Ajout, modification, suppression et basculement de statut
+- **Interface moderne** : Design responsive avec Bootstrap 5 et thèmes personnalisables
+- **Système de filtrage** : DataTables pour la recherche et le tri avancés
+- **API REST** : Interface API complète pour les intégrations
+- **Sécurité** : Protection CSRF et validation des données
+- **Nettoyage automatique** : Outils de maintenance des données
+- **Interface de test API** : Page dédiée pour tester l'API (style Swagger)
 
-*Disclaimer : Cette app ne vous fera pas aimer le lundi matin, mais au moins vous pourrez cocher "Survivre au lundi" de votre liste !*
+## 🛠 Technologies utilisées
 
-## 🛠️ Technologies Utilisées
+- **Backend** : PHP 7.4+
+- **Base de données** : MySQL 5.7+ / MariaDB
+- **Frontend** : HTML5, CSS3, JavaScript (ES6+)
+- **Frameworks** : Bootstrap 5, DataTables
+- **Icônes** : Font Awesome 6
+- **Architecture** : MVC pattern, API REST
 
-### Backend
-- **PHP 8.x** - Le serveur qui ne dort jamais
-- **MySQL/MariaDB** - Pour stocker vos tâches (et vos procrastinations)
-- **PDO** - Connexion base de données sécurisée
-- **Architecture MVC simplifiée** - Parce qu'on aime quand c'est bien organisé
+## 📁 Structure du projet
 
-### Frontend
-- **HTML5** - La base, tout simplement
-- **Bootstrap 5.3.2** - Pour que ça soit beau sans effort
-- **jQuery 3.7.1** - Le vieux de la vieille qui fonctionne toujours
-- **DataTables** - Parce que les tableaux méritent mieux qu'une simple `<table>`
-- **Font Awesome 6.4** - Les icônes qui font la différence
-- **CSS3 personnalisé** - 3 thèmes modernes et sobres (fini le flashy !)
+```
+to_do_list/
+├── 📄 index.html              # Interface principale de l'application
+├── 📄 api.php                 # API REST pour la gestion des tâches
+├── 📄 apitest.php             # Interface de test API (style Swagger)
+├── 📄 clean_data.php          # Script de nettoyage des données
+├── 📄 php_infos.php           # Informations PHP (développement)
+├── 📄 init database.sql       # Script d'initialisation de la BDD
+├── 📄 README.md               # Documentation du projet
+├── 📁 classes/
+│   └── 📄 TaskManager.php     # Classe de gestion des tâches
+├── 📁 config/
+│   └── 📄 database.php        # Configuration de la base de données
+├── 📁 css/
+│   ├── 📄 style.css           # Styles principaux
+│   └── 📄 themes.css          # Thèmes personnalisables
+├── 📁 database/
+│   └── 📄 create_database.sql # Script de création de la BDD
+└── 📁 js/
+    └── 📄 app.js              # Logique JavaScript de l'application
+```
 
-### Fonctionnalités
-- ✅ **CRUD complet** - Create, Read, Update, Delete (les 4 piliers de la productivité)
-- 🎨 **3 thèmes** - Clair, Sombre, Bleu (pour tous les goûts et toutes les heures)
-- 📊 **Statistiques en temps réel** - Parce qu'on aime voir nos progrès
-- 🔍 **Filtres avancés** - Toutes, En cours, Terminées
-- 📱 **Design responsive** - Ça marche sur votre téléphone aussi !
-- 🔒 **Sécurité XSS** - Protection contre les méchants
-- ⚡ **AJAX** - Pas de rechargement de page (on n'est plus en 2005)
-
-## 📦 Installation
+## 🚀 Installation
 
 ### Prérequis
-- **Laragon** (ou XAMPP/WAMP si vous êtes nostalgique)
-- **PHP 8.0+** 
-- **MySQL 5.7+** ou **MariaDB 10.3+**
-- Un navigateur qui date de moins de 10 ans
+
+- **Serveur web** : Apache 2.4+ ou Nginx
+- **PHP** : Version 7.4 ou supérieure
+- **Base de données** : MySQL 5.7+ ou MariaDB 10.3+
+- **Extensions PHP** : PDO, PDO_MySQL
 
 ### Étapes d'installation
 
-#### 1. Cloner/Télécharger le projet
-```bash
-# Si vous utilisez Git (les pros)
-git clone [url-du-repo] C:\laragon\www\to_do_list
-
-# Ou simplement extraire le ZIP dans C:\laragon\www\to_do_list
-```
-
-#### 2. Configurer la base de données
-
-1. **Démarrer Laragon** (le bouton "Start All" est votre ami)
-
-2. **Créer la base de données** :
-   - Ouvrir phpMyAdmin : `http://localhost/phpmyadmin`
-   - Créer une nouvelle base : `todo_app`
-   - Importer le fichier : `database/create_database.sql`
-
-3. **Configurer la connexion** :
-   - Ouvrir `config/database.php`
-   - Vérifier/modifier les paramètres :
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_NAME', 'todo_app');
-   define('DB_USER', 'root');
-   define('DB_PASS', ''); // Vide par défaut avec Laragon
-   ```
-
-#### 3. Nettoyer les données (si nécessaire)
-
-Si vous avez des caractères spéciaux qui s'affichent bizarrement (genre `l&#039;emploi`), exécutez :
+#### 1. Téléchargement du projet
 
 ```bash
-# Dans le terminal, se placer dans le dossier du projet
-cd C:\laragon\www\to_do_list
-
-# Lancer le script de nettoyage
-php clean_data.php
+# Cloner le repository ou télécharger les fichiers
+# Placer le projet dans votre répertoire web (ex: htdocs, www)
 ```
 
-#### 4. Accéder à l'application
+#### 2. Configuration de la base de données
 
-Ouvrir votre navigateur préféré et aller sur :
-```
-http://localhost/to_do_list
+**Créer la base de données :**
+```sql
+CREATE DATABASE to_do_list CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-*Et voilà ! Vous êtes prêt à procrastiner... euh, à être productif !*
+**Importer la structure :**
+```bash
+# Exécuter le script SQL
+mysql -u root -p to_do_list < "init database.sql"
+```
+
+#### 3. Configuration PHP
+
+Modifier le fichier `config/database.php` :
+
+```php
+class DatabaseConfig {
+    const HOST = '127.0.0.1';
+    const DB_NAME = 'to_do_list';
+    const USERNAME = 'root';
+    const PASSWORD = 'VOTRE_MOT_DE_PASSE'; // Remplacer par votre mot de passe
+    const CHARSET = 'utf8mb4';
+}
+```
+
+#### 4. Permissions (Linux/Mac)
+
+```bash
+# Donner les permissions appropriées
+chmod 755 /chemin/vers/to_do_list
+chmod 644 /chemin/vers/to_do_list/*.php
+```
+
+#### 5. Vérification de l'installation
+
+1. Accéder à `http://localhost/to_do_list/` pour l'interface principale
+2. Accéder à `http://localhost/to_do_list/apitest.php` pour tester l'API
+3. Vérifier les informations PHP : `http://localhost/to_do_list/php_infos.php`
 
 ## 🎯 Utilisation
 
 ### Interface principale
-- **Ajouter une tâche** : Tapez dans le champ en haut et cliquez "Ajouter"
-- **Marquer comme terminée** : Cochez la case à côté de la tâche
-- **Modifier** : Cliquez sur l'icône crayon
-- **Supprimer** : Cliquez sur l'icône poubelle
-- **Filtrer** : Utilisez les boutons "Toutes", "En cours", "Terminées"
-- **Changer de thème** : Menu déroulant en haut à droite
 
-### Raccourcis clavier
-- **Entrée** dans le champ d'ajout = Ajouter la tâche
-- **Échap** dans le modal d'édition = Fermer sans sauvegarder
+1. **Ajouter une tâche** : Utiliser le formulaire en haut de la page
+2. **Modifier une tâche** : Double-cliquer sur le titre ou utiliser le bouton d'édition
+3. **Marquer comme terminée** : Cocher la case correspondante
+4. **Supprimer une tâche** : Utiliser le bouton de suppression
+5. **Filtrer/Rechercher** : Utiliser les outils DataTables intégrés
 
-## 🗂️ Structure du projet
+### API REST
 
+L'application expose une API REST complète accessible via `api.php` :
+
+- **GET** `?action=list` - Récupérer toutes les tâches
+- **POST** `?action=add` - Ajouter une nouvelle tâche
+- **POST** `?action=update` - Modifier une tâche existante
+- **POST** `?action=toggle` - Basculer le statut d'une tâche
+- **POST** `?action=delete` - Supprimer une tâche
+- **POST** `?action=clean` - Nettoyer les entités HTML encodées
+
+### Interface de test API
+
+Accéder à `apitest.php` pour une interface de test style Swagger permettant de :
+- Tester tous les endpoints de l'API
+- Visualiser les réponses JSON
+- Valider le fonctionnement de l'API
+- **Note** : Un token d'authentification est requis pour utiliser l'interface de test
+
+## 🔧 Maintenance
+
+### Nettoyage des données
+
+Exécuter `clean_data.php` pour nettoyer les entités HTML encodées dans la base de données.
+
+### Sauvegarde
+
+```bash
+# Sauvegarder la base de données
+mysqldump -u root -p to_do_list > backup_todolist.sql
 ```
-to_do_list/
-├── 📁 classes/
-│   └── TaskManager.php          # Logique métier des tâches
-├── 📁 config/
-│   └── database.php             # Configuration BDD
-├── 📁 css/
-│   ├── style.css                # Styles personnalisés
-│   └── themes.css               # Les 3 thèmes sobres
-├── 📁 database/
-│   └── create_database.sql      # Structure de la BDD
-├── 📁 js/
-│   └── app.js                   # Logique frontend
-├── 📄 api.php                   # API REST pour AJAX
-├── 📄 index.html                # Interface utilisateur
-├── 📄 clean_data.php            # Script de nettoyage
-└── 📄 README.md                 # Ce magnifique fichier
-```
 
-## 🔧 Personnalisation
+## 🛡 Sécurité
 
-### Ajouter un nouveau thème
-1. Modifiez `css/themes.css`
-2. Ajoutez vos variables CSS dans un nouveau bloc `[data-theme="montheme"]`
-3. Ajoutez l'option dans le sélecteur de thème (`index.html`)
-
-### Modifier les couleurs
-Toutes les couleurs sont définies via des variables CSS dans `themes.css`. 
-Pas besoin de chercher dans 50 fichiers !
+- **Protection CSRF** : Validation des requêtes
+- **Échappement des données** : Protection contre les injections XSS
+- **Validation des entrées** : Nettoyage des données utilisateur
+- **Requêtes préparées** : Protection contre les injections SQL
 
 ## 🐛 Dépannage
 
-### "Erreur de connexion à la base de données"
-- Vérifiez que Laragon est démarré
-- Contrôlez les paramètres dans `config/database.php`
-- Assurez-vous que la base `todo_app` existe
+### Erreurs courantes
 
-### "Les caractères spéciaux s'affichent mal"
-- Exécutez `php clean_data.php`
-- Vérifiez que votre BDD est en UTF-8
+1. **Erreur de connexion à la base de données**
+   - Vérifier les paramètres dans `config/database.php`
+   - S'assurer que MySQL est démarré
 
-### "DataTable ne s'affiche pas"
-- Vérifiez votre connexion internet (pour les CDN)
-- Regardez la console du navigateur (F12)
+2. **Erreur 500**
+   - Consulter les logs d'erreur du serveur web
+   - Vérifier les permissions des fichiers
 
-### "Ça marche pas du tout"
-- Café ☕
-- Redémarrage de Laragon
-- Vérification des logs d'erreur PHP
-- Encore du café ☕☕
+3. **Interface non fonctionnelle**
+   - Vérifier que JavaScript est activé
+   - Contrôler la console du navigateur pour les erreurs
 
-## 📝 Notes du développeur
+## 📝 Licence
 
-Cette application a été conçue avec amour, quelques nuits blanches, et beaucoup de refactoring. 
+Ce projet est fourni sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
-*Fun fact* : Il y a eu plus de commits pour corriger l'affichage des apostrophes que pour toutes les autres fonctionnalités réunies. Les détails comptent !
+## 👨‍💻 Développement
 
-## 🤝 Contribution
+### Environnement de développement recommandé
 
-Les pull requests sont les bienvenues ! Surtout si vous avez des idées pour :
-- Améliorer le responsive
-- Ajouter des animations plus subtiles
-- Optimiser les performances
-- Corriger mes fautes de frappe dans ce README 😅
+- **XAMPP/WAMP/LARAGON** pour Windows
+- **MAMP** pour macOS  
+- **LAMP** pour Linux
 
-## 📄 Licence
+### Contribution
 
-Ce projet est sous licence "Faites-en ce que vous voulez, mais si ça casse, c'est pas ma faute" (MIT License).
+Les contributions sont les bienvenues ! N'hésitez pas à :
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
 
 ---
 
-*Développé avec ❤️ et une quantité déraisonnable de café*
-
-**Version** : 1.0.0  
-**Dernière mise à jour** : Juin 2025
+*Développé avec ❤️ et un peu de cafeine*
 
